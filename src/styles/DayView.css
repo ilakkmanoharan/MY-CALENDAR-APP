@@ -1,0 +1,56 @@
+.day-view {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.appointments {
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.appointment {
+  background-color: #e8f0fe;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+input[type="text"] {
+  width: 80%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #1565c0;
+}
+.day-date {
+  font-family: 'Cursive', 'Brush Script MT', cursive;
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: #8e24aa;
+}

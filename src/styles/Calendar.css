@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+
+.calendar {
+  padding: 2rem;
+  text-align: center;
+  font-family: 'Quicksand', sans-serif;
+  background-color: #fff0f5;
+  border: 3px solid #e6e6e6;
+  border-radius: 20px;
+  max-width: 900px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.months {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+.month {
+  background-color: #fce4ec;
+  border: 2px solid #e0e0e0;
+  border-radius: 16px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #6a1b9a;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.month:hover {
+  background-color: #f8bbd0;
+  transform: scale(1.05);
+}
+
+
+
+
+/*
+
+.calendar {
+  padding: 2rem;
+  text-align: center;
+}
+
+.months {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.month {
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  padding: 1rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.month:hover {
+  background-color: #e0e0e0;
+}
+
+*/
