@@ -1,20 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import LandingPage from './pages/LandingPage';
 import Dashboard from './pages/Dashboard';
-// import Calendar from './components/Calendar';
 import MonthView from './components/MonthView';
 import DayView from './components/DayView';
+import Calendar from './components/Calendar'; // Ensure Calendar is imported
 import './styles/Calendar.css';
 import './styles/MonthView.css';
 import './styles/DayView.css';
 import { auth } from './firebase';
-import { useState, useEffect } from 'react';
 
 const App: React.FC = () => {
-  //const isLoggedIn = !!auth.currentUser;
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
@@ -33,12 +31,12 @@ const App: React.FC = () => {
         <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
         <Route path="/month/:monthIndex" element={<MonthView />} />
         <Route path="/day/:month/:date" element={<DayView />} />
+        <Route path="/calendar" element={<Calendar />} /> {/* Added route for Calendar */}
       </Routes>
     </Router>
   );
 };
 
-
 export default App;
-// Removed the conflicting local useState function declaration.
+
 
