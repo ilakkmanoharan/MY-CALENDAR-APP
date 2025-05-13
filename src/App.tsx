@@ -6,7 +6,8 @@ import LandingPage from './pages/LandingPage';
 import Dashboard from './pages/Dashboard';
 import MonthView from './components/MonthView';
 import DayView from './components/DayView';
-import Calendar from './components/Calendar'; // Ensure Calendar is imported
+import Calendar from './components/Calendar';
+import Layout from './components/Layout';
 import './styles/Calendar.css';
 import './styles/MonthView.css';
 import './styles/DayView.css';
@@ -28,10 +29,46 @@ const App: React.FC = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
-        <Route path="/month/:monthIndex" element={<MonthView />} />
-        <Route path="/day/:month/:date" element={<DayView />} />
-        <Route path="/calendar" element={<Calendar />} /> {/* Added route for Calendar */}
+        <Route
+          path="/dashboard"
+          element={isLoggedIn ? (
+            <Layout>
+              <Dashboard />
+            </Layout>
+          ) : (
+            <Navigate to="/login" />
+          )}
+        />
+        <Route
+          path="/calendar"
+          element={isLoggedIn ? (
+            <Layout>
+              <Calendar />
+            </Layout>
+          ) : (
+            <Navigate to="/login" />
+          )}
+        />
+        <Route
+          path="/month/:monthIndex"
+          element={isLoggedIn ? (
+            <Layout>
+              <MonthView />
+            </Layout>
+          ) : (
+            <Navigate to="/login" />
+          )}
+        />
+        <Route
+          path="/day/:month/:date"
+          element={isLoggedIn ? (
+            <Layout>
+              <DayView />
+            </Layout>
+          ) : (
+            <Navigate to="/login" />
+          )}
+        />
       </Routes>
     </Router>
   );

@@ -41,33 +41,3 @@
 
 
 
-
-/*
-
-.calendar {
-  padding: 2rem;
-  text-align: center;
-}
-
-.months {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.month {
-  background-color: #f5f5f5;
-  border-radius: 12px;
-  padding: 1rem;
-  font-weight: bold;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.month:hover {
-  background-color: #e0e0e0;
-}
-
-*/

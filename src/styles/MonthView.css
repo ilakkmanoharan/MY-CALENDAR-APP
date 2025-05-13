@@ -19,7 +19,7 @@
   left: 1rem;
   font-size: 1.5rem;
   font-weight: 700;
-  background-color: rgba(255, 240, 245, 0.6); /* matches background, soft */
+  background-color: rgba(255, 240, 245, 0.6);
   color: #6a1b9a;
   border: 1px solid #e6cde6;
   border-radius: 12px;
@@ -76,5 +76,61 @@
   font-size: 0.8rem;
   font-style: italic;
   color: #555;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .days {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8rem;
+  }
+
+  .calendar-button {
+    font-size: 1.2rem;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .day {
+    font-size: 1rem;
+  }
+
+  .day .date-number {
+    font-size: 1.2rem;
+  }
+
+  .day .weekday-name {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .month-view {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .days {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+
+  .calendar-button {
+    font-size: 1rem;
+    padding: 0.2rem 0.5rem;
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+
+  .day {
+    font-size: 0.9rem;
+  }
+
+  .day .date-number {
+    font-size: 1rem;
+  }
+
+  .day .weekday-name {
+    font-size: 0.65rem;
+  }
 }
 
