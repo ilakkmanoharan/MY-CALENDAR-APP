@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../firebase'; //
 import { auth } from '../firebase';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
@@ -10,15 +12,29 @@ const Signup: React.FC = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const signup = async () => {
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      await updateProfile(userCredential.user, { displayName: name });
-      navigate("/dashboard");
-    } catch (error) {
-      alert("Signup failed");
-    }
-  };
+
+const signup = async () => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    // Set display name in Firebase Auth
+    await updateProfile(user, { displayName: name });
+
+    // Create a userProfile document in Firestore
+    await setDoc(doc(db, 'userProfile', user.uid), {
+      uid: user.uid,
+      name: name,
+      email: user.email,
+      createdAt: new Date(),
+    });
+
+    navigate("/dashboard");
+  } catch (error) {
+    console.error("Signup failed", error);
+    alert("Signup failed");
+  }
+};
 
   return (
     <div className="signup-container">

@@ -2,18 +2,36 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import { TypeContextProvider } from './context/TypeContext';
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+import { clearIndexedDbPersistence } from "firebase/firestore";
+import { db } from './firebase';  // Your Firestore instance
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+async function startApp() {
+  try {
+    await clearIndexedDbPersistence(db);
+    console.log("Cleared Firestore persistence");
+  } catch (e) {
+    console.warn("Failed to clear persistence", e);
+  }
+
+  const root = ReactDOM.createRoot(
+    document.getElementById('root') as HTMLElement
+  );
+
+  root.render(
+    <React.StrictMode>
+      <TypeContextProvider>
+        <App />
+      </TypeContextProvider>
+    </React.StrictMode>
+  );
+}
+
+startApp();
+
+// Optional: report web vitals as before
 reportWebVitals();
+
+

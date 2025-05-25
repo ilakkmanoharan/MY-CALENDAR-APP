@@ -17,15 +17,10 @@ const MonthView = () => {
     setDays(getDaysInMonth(date));
   }, [month]);
 
-  // Function to navigate to the Calendar View
-  const goToCalendar = () => {
-    navigate("/calendar");
-  };
-
   return (
     <div className="month-view">
       
-      <button onClick={goToCalendar} className="calendar-button">←</button>
+      
 
       <h2>{new Date(2024, month).toLocaleString('default', { month: 'long' })}</h2>
       <div className="days">
@@ -45,4 +40,3 @@ const MonthView = () => {
 };
 
 export default MonthView;
-

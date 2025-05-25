@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+// App.tsx
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
@@ -11,66 +12,68 @@ import Layout from './components/Layout';
 import './styles/Calendar.css';
 import './styles/MonthView.css';
 import './styles/DayView.css';
-import { auth } from './firebase';
 
-const App: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+import { AuthProvider, useAuth } from './context/AuthProvider'; // Adjust path
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setIsLoggedIn(!!user);
-    });
-    return () => unsubscribe();
-  }, []);
+const AppRoutes: React.FC = () => {
+  const { user } = useAuth();
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/dashboard"
-          element={isLoggedIn ? (
-            <Layout>
-              <Dashboard />
-            </Layout>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/login" element={<Login />} />
+      <Route
+        path="/dashboard"
+        element={
+          user ? (
+            <Layout><Dashboard /></Layout>
           ) : (
             <Navigate to="/login" />
-          )}
-        />
-        <Route
-          path="/calendar"
-          element={isLoggedIn ? (
-            <Layout>
-              <Calendar />
-            </Layout>
+          )
+        }
+      />
+      <Route
+        path="/calendar"
+        element={
+          user ? (
+            <Layout><Calendar /></Layout>
           ) : (
             <Navigate to="/login" />
-          )}
-        />
-        <Route
-          path="/month/:monthIndex"
-          element={isLoggedIn ? (
-            <Layout>
-              <MonthView />
-            </Layout>
+          )
+        }
+      />
+      <Route
+        path="/month/:monthIndex"
+        element={
+          user ? (
+            <Layout><MonthView /></Layout>
           ) : (
             <Navigate to="/login" />
-          )}
-        />
-        <Route
-          path="/day/:month/:date"
-          element={isLoggedIn ? (
-            <Layout>
-              <DayView />
-            </Layout>
+          )
+        }
+      />
+      <Route
+        path="/day/:month/:date"
+        element={
+          user ? (
+            <Layout><DayView /></Layout>
           ) : (
             <Navigate to="/login" />
-          )}
-        />
-      </Routes>
-    </Router>
+          )
+        }
+      />
+    </Routes>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <AuthProvider>
+      <Router>
+        <AppRoutes />
+      </Router>
+    </AuthProvider>
   );
 };
 
